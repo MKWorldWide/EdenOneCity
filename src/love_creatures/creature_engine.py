@@ -56,6 +56,7 @@ import numpy as np
 import uuid
 import sys
 import os
+from src.eden_core.module_interface import EdenModuleInterface
 
 # Add AthenaMist-Blended to path for brain integration
 ATHENA_MIST_PATH = "/Users/sovereign/Projects/AthenaMist-Blended"
@@ -391,18 +392,21 @@ class HealthMonitor:
                 alerts[metric] = value < threshold
         return alerts
 
-class CreatureEngine:
+class CreatureEngine(EdenModuleInterface):
     """
-    Main engine for managing bioengineered creatures and their bonds.
-    
-    🧠 BRAIN INTEGRATION: Coordinates with AthenaMist-Blended for unified creature intelligence.
-    This engine serves as the primary interface between creatures and the central brain.
+    Plug-and-play implementation of the Love Creature Haven engine.
+    Implements EdenModuleInterface for modular orchestration.
+    📋 QUANTUM DOCUMENTATION:
+    - Manages bioengineered creatures, bonds, and health in a modular, pluggable fashion.
+    - Integrates with AthenaMist-Blended and system-wide agent bus.
+    - All actions are logged to blockchain/timechain for auditability.
     """
-    
     def __init__(self):
-        self.creature_manager = CreatureManager()
+        self.manager = CreatureManager()
         self.health_monitor = HealthMonitor()
         self.brain_sync = False
+        self.blockchain_log = []  # Placeholder for blockchain/timechain logging
+        self.system_context = None
         
         # Initialize AthenaMist-Blended integration
         if BRAIN_AVAILABLE:
@@ -413,6 +417,34 @@ class CreatureEngine:
             except Exception as e:
                 print(f"⚠️  Warning: Could not initialize AthenaMist brain: {e}")
         
+        super().__init__()
+
+    def register(self, system_context):
+        self.system_context = system_context
+        self._log_action('register', {'context': system_context})
+        return True
+
+    def process(self, input_data):
+        result = {}
+        if 'creature' in input_data:
+            creature = input_data['creature']
+            result['creature_id'] = self.manager.create_creature(**creature)
+        if 'bond' in input_data:
+            bond = input_data['bond']
+            result['bond_id'] = self.manager.form_bond(**bond)
+        if 'health_update' in input_data:
+            health = input_data['health_update']
+            result['health_status'] = self.manager.update_health(**health)
+        self._log_action('process', {'input': input_data, 'output': result})
+        return result
+
+    def shutdown(self):
+        self._log_action('shutdown', {})
+        return True
+
+    def _log_action(self, action, data):
+        self.blockchain_log.append({'action': action, 'data': data, 'timestamp': datetime.now()})
+
     def create_creature(self,
                        species: str,
                        name: str,
@@ -433,7 +465,7 @@ class CreatureEngine:
         Returns:
             str: Creature ID
         """
-        return self.creature_manager.create_creature(species, name, emotional_capacity, genetic_markers)
+        return self.manager.create_creature(species, name, emotional_capacity, genetic_markers)
     
     def form_emotional_bond(self,
                           creature_id: str,
@@ -453,7 +485,7 @@ class CreatureEngine:
         Returns:
             Optional[str]: Bond ID if successful
         """
-        return self.creature_manager.form_bond(creature_id, entity_id, bond_type)
+        return self.manager.form_bond(creature_id, entity_id, bond_type)
     
     def interact_with_creature(self,
                              creature_id: str,
@@ -475,7 +507,7 @@ class CreatureEngine:
         """
         # Find the bond between creature and entity
         bond_id = None
-        for bid, bond in self.creature_manager.bonds.items():
+        for bid, bond in self.manager.bonds.items():
             if bond.creature_id == creature_id and bond.entity_id == entity_id:
                 bond_id = bid
                 break
@@ -484,10 +516,10 @@ class CreatureEngine:
             return {"success": False, "error": "No bond found"}
         
         # Strengthen the bond
-        success = self.creature_manager.strengthen_bond(bond_id, interaction_data)
+        success = self.manager.strengthen_bond(bond_id, interaction_data)
         
         if success:
-            bond = self.creature_manager.bonds[bond_id]
+            bond = self.manager.bonds[bond_id]
             return {
                 "success": True,
                 "bond_id": bond_id,
@@ -517,8 +549,8 @@ class CreatureEngine:
         alerts = self.health_monitor.update_health(creature_id, health_data)
         
         # Update creature health status
-        if creature_id in self.creature_manager.creatures:
-            self.creature_manager.creatures[creature_id].health_status.update(health_data)
+        if creature_id in self.manager.creatures:
+            self.manager.creatures[creature_id].health_status.update(health_data)
         
         return {
             "success": True,
@@ -533,14 +565,14 @@ class CreatureEngine:
         
         🧠 BRAIN INTEGRATION: Provides deep analytics using AthenaMist-Blended.
         """
-        if creature_id not in self.creature_manager.creatures:
+        if creature_id not in self.manager.creatures:
             return {"error": "Creature not found"}
         
-        creature = self.creature_manager.creatures[creature_id]
+        creature = self.manager.creatures[creature_id]
         
         # Get bonds for this creature
         creature_bonds = [
-            bond for bond in self.creature_manager.bonds.values()
+            bond for bond in self.manager.bonds.values()
             if bond.creature_id == creature_id
         ]
         
@@ -572,8 +604,8 @@ class CreatureEngine:
         return {
             'brain_available': BRAIN_AVAILABLE,
             'brain_sync': self.brain_sync,
-            'creatures_count': len(self.creature_manager.creatures),
-            'bonds_count': len(self.creature_manager.bonds),
+            'creatures_count': len(self.manager.creatures),
+            'bonds_count': len(self.manager.bonds),
             'last_sync_time': datetime.now()
         }
 

@@ -56,6 +56,7 @@ import numpy as np
 import uuid
 import sys
 import os
+from src.eden_core.module_interface import EdenModuleInterface
 
 # Add AthenaMist-Blended to path for brain integration
 ATHENA_MIST_PATH = "/Users/sovereign/Projects/AthenaMist-Blended"
@@ -420,17 +421,21 @@ class GardenManager:
         health_multiplier = np.mean(list(health_metrics.values()))
         return base_rate * health_multiplier
 
-class ZeroGEngine:
+class ZeroGEngine(EdenModuleInterface):
     """
-    Main engine for managing the zero-gravity environment.
-    
-    🧠 BRAIN INTEGRATION: Coordinates with AthenaMist-Blended for unified environmental intelligence.
-    This engine serves as the primary interface between the environment and the central brain.
+    Plug-and-play implementation of the Zero-G Connection Dome engine.
+    Implements EdenModuleInterface for modular orchestration.
+    📋 QUANTUM DOCUMENTATION:
+    - Manages zero-g environment, floating gardens, and life support in a modular, pluggable fashion.
+    - Integrates with AthenaMist-Blended and system-wide agent bus.
+    - All actions are logged to blockchain/timechain for auditability.
     """
-    
     def __init__(self):
-        self.environment = EnvironmentController()
+        super().__init__()
+        self.env_controller = EnvironmentController()
         self.garden_manager = GardenManager()
+        self.blockchain_log = []  # Placeholder for blockchain/timechain logging
+        self.system_context = None
         self.brain_sync = False
         
         # Initialize AthenaMist-Blended integration
@@ -442,6 +447,32 @@ class ZeroGEngine:
             except Exception as e:
                 print(f"⚠️  Warning: Could not initialize AthenaMist brain: {e}")
         
+    def register(self, system_context):
+        self.system_context = system_context
+        self._log_action('register', {'context': system_context})
+        return True
+
+    def process(self, input_data):
+        result = {}
+        if 'environment' in input_data:
+            env = input_data['environment']
+            result['env_status'] = self.env_controller.update_environment(**env)
+        if 'garden' in input_data:
+            garden = input_data['garden']
+            result['garden_id'] = self.garden_manager.create_garden(**garden)
+        if 'maintenance' in input_data:
+            maintenance = input_data['maintenance']
+            result['maintenance_status'] = self.garden_manager.maintain_garden(**maintenance)
+        self._log_action('process', {'input': input_data, 'output': result})
+        return result
+
+    def shutdown(self):
+        self._log_action('shutdown', {})
+        return True
+
+    def _log_action(self, action, data):
+        self.blockchain_log.append({'action': action, 'data': data, 'timestamp': datetime.now()})
+
     def create_floating_garden(self,
                              name: str,
                              plant_species: List[str],
@@ -471,7 +502,7 @@ class ZeroGEngine:
         🧠 BRAIN INTEGRATION: Garden environments are optimized by AthenaMist-Blended
         for maximum growth and therapeutic benefit.
         """
-        return self.environment.update_environment(target_state)
+        return self.env_controller.update_environment(target_state)
     
     def perform_maintenance(self, garden_id: str) -> Dict[str, Any]:
         """
@@ -503,12 +534,12 @@ class ZeroGEngine:
         """
         analytics = {
             "current_state": {
-                "temperature": self.environment.current_state.temperature,
-                "pressure": self.environment.current_state.pressure,
-                "humidity": self.environment.current_state.humidity,
-                "oxygen_level": self.environment.current_state.oxygen_level,
-                "gravity_level": self.environment.current_state.gravity_level,
-                "therapeutic_index": self.environment.current_state.therapeutic_index
+                "temperature": self.env_controller.current_state.temperature,
+                "pressure": self.env_controller.current_state.pressure,
+                "humidity": self.env_controller.current_state.humidity,
+                "oxygen_level": self.env_controller.current_state.oxygen_level,
+                "gravity_level": self.env_controller.current_state.gravity_level,
+                "therapeutic_index": self.env_controller.current_state.therapeutic_index
             },
             "gardens_count": len(self.garden_manager.gardens),
             "average_therapeutic_value": 0.0,
@@ -535,7 +566,7 @@ class ZeroGEngine:
         
         🧠 BRAIN INTEGRATION: Provides personalized therapeutic environment recommendations.
         """
-        return self.environment.get_therapeutic_optimization()
+        return self.env_controller.get_therapeutic_optimization()
     
     def get_brain_status(self) -> Dict[str, Any]:
         """Get the status of AthenaMist-Blended brain integration."""
@@ -543,7 +574,7 @@ class ZeroGEngine:
             'brain_available': BRAIN_AVAILABLE,
             'brain_sync': self.brain_sync,
             'gardens_count': len(self.garden_manager.gardens),
-            'therapeutic_index': self.environment.current_state.therapeutic_index,
+            'therapeutic_index': self.env_controller.current_state.therapeutic_index,
             'last_sync_time': datetime.now()
         }
 

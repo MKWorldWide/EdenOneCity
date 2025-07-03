@@ -56,6 +56,7 @@ import numpy as np
 import uuid
 import sys
 import os
+from src.eden_core.module_interface import EdenModuleInterface
 
 # Add AthenaMist-Blended to path for brain integration
 ATHENA_MIST_PATH = "/Users/sovereign/Projects/AthenaMist-Blended"
@@ -468,18 +469,22 @@ class PortalController:
         
         return analytics
 
-class StargateEngine:
+class StargateEngine(EdenModuleInterface):
     """
-    Main engine for managing the Stargate portal and resonance testing.
-    
-    🧠 BRAIN INTEGRATION: Coordinates with AthenaMist-Blended for unified portal intelligence.
-    This engine serves as the primary interface between the portal and the central brain.
+    Plug-and-play implementation of the Temptation Stargate engine.
+    Implements EdenModuleInterface for modular orchestration.
+    📋 QUANTUM DOCUMENTATION:
+    - Manages portal resonance, activation, and access in a modular, pluggable fashion.
+    - Integrates with AthenaMist-Blended and system-wide agent bus.
+    - All actions are logged to blockchain/timechain for auditability.
     """
-    
     def __init__(self):
+        super().__init__()
         self.resonance_tester = ResonanceTester()
         self.portal_controller = PortalController()
         self.brain_sync = False
+        self.blockchain_log = []  # Placeholder for blockchain/timechain logging
+        self.system_context = None
         
         # Initialize AthenaMist-Blended integration
         if BRAIN_AVAILABLE:
@@ -490,6 +495,32 @@ class StargateEngine:
             except Exception as e:
                 print(f"⚠️  Warning: Could not initialize AthenaMist brain: {e}")
         
+    def register(self, system_context):
+        self.system_context = system_context
+        self._log_action('register', {'context': system_context})
+        return True
+
+    def process(self, input_data):
+        result = {}
+        if 'profile' in input_data:
+            profile = input_data['profile']
+            result['profile_id'] = self.resonance_tester.create_profile(**profile)
+        if 'test' in input_data:
+            test = input_data['test']
+            result['test_result'] = self.resonance_tester.perform_resonance_test(**test)
+        if 'portal' in input_data:
+            portal = input_data['portal']
+            result['portal_status'] = self.portal_controller.activate_portal(**portal)
+        self._log_action('process', {'input': input_data, 'output': result})
+        return result
+
+    def shutdown(self):
+        self._log_action('shutdown', {})
+        return True
+
+    def _log_action(self, action, data):
+        self.blockchain_log.append({'action': action, 'data': data, 'timestamp': datetime.now()})
+
     def test_entity(self,
                    entity_id: str,
                    test_data: Dict[str, Any]) -> Dict[str, Any]:

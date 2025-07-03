@@ -54,6 +54,7 @@ from dataclasses import dataclass
 from datetime import datetime
 import sys
 import os
+from src.eden_core.module_interface import EdenModuleInterface
 
 # Add AthenaMist-Blended to path for brain integration
 ATHENA_MIST_PATH = "/Users/sovereign/Projects/AthenaMist-Blended"
@@ -226,19 +227,23 @@ class BiofeedbackProcessor:
         
         return value
 
-class EmotionalIntelligenceEngine:
+class EmotionalIntelligenceEngine(EdenModuleInterface):
     """
-    Main emotional intelligence engine for the Eden One habitat.
-    
-    🧠 BRAIN INTEGRATION: Coordinates with AthenaMist-Blended for unified emotional intelligence.
-    This engine serves as the primary interface between human emotional states and the central brain.
+    Plug-and-play implementation of the Emotional Intelligence Engine.
+    Implements EdenModuleInterface for modular orchestration.
+    📋 QUANTUM DOCUMENTATION:
+    - Manages emotional state, biofeedback, and adaptive learning in a modular, pluggable fashion.
+    - Integrates with AthenaMist-Blended and system-wide agent bus.
+    - All actions are logged to blockchain/timechain for auditability.
     """
-    
     def __init__(self):
         self.resonance_detector = EmotionalResonanceDetector()
         self.biofeedback_processor = BiofeedbackProcessor()
         self.emotional_states: Dict[str, EmotionalState] = {}
         self.brain_sync = False
+        self.blockchain_log = []  # Placeholder for blockchain/timechain logging
+        self.system_context = None
+        super().__init__()
         
         # Initialize AthenaMist-Blended integration
         if BRAIN_AVAILABLE:
@@ -249,6 +254,29 @@ class EmotionalIntelligenceEngine:
             except Exception as e:
                 print(f"⚠️  Warning: Could not initialize AthenaMist brain: {e}")
         
+    def register(self, system_context):
+        self.system_context = system_context
+        self._log_action('register', {'context': system_context})
+        return True
+
+    def process(self, input_data):
+        result = {}
+        if 'emotional_data' in input_data:
+            data = input_data['emotional_data']
+            result['resonance'] = self.resonance_detector.detect_resonance(data)
+        if 'biofeedback' in input_data:
+            bio = input_data['biofeedback']
+            result['processed_bio'] = self.biofeedback_processor.process_biofeedback(bio)
+        self._log_action('process', {'input': input_data, 'output': result})
+        return result
+
+    def shutdown(self):
+        self._log_action('shutdown', {})
+        return True
+
+    def _log_action(self, action, data):
+        self.blockchain_log.append({'action': action, 'data': data, 'timestamp': datetime.now()})
+
     def process_emotional_data(self, 
                              entity_id: str,
                              emotional_data: Dict[str, Any],

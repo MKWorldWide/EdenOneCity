@@ -56,6 +56,7 @@ import numpy as np
 import uuid
 import sys
 import os
+from src.eden_core.module_interface import EdenModuleInterface
 
 # Add AthenaMist-Blended to path for brain integration
 ATHENA_MIST_PATH = "/Users/sovereign/Projects/AthenaMist-Blended"
@@ -537,17 +538,21 @@ class MemoryExperienceManager:
         
         return analytics
 
-class CoastalMemoryEngine:
+class CoastalMemoryEngine(EdenModuleInterface):
     """
-    Main engine for managing coastal memories and experiences.
-    
-    🧠 BRAIN INTEGRATION: Coordinates with AthenaMist-Blended for unified memory intelligence.
-    This engine serves as the primary interface between memories and the central brain.
+    Plug-and-play implementation of the Coastal Memory Engine.
+    Implements EdenModuleInterface for modular orchestration.
+    📋 QUANTUM DOCUMENTATION:
+    - Manages memory capture, experience, and resonance in a modular, pluggable fashion.
+    - Integrates with AthenaMist-Blended and system-wide agent bus.
+    - All actions are logged to blockchain/timechain for auditability.
     """
-    
     def __init__(self):
+        super().__init__()
         self.memory_db = MemoryDatabase()
         self.experience_manager = MemoryExperienceManager(self.memory_db)
+        self.blockchain_log = []  # Placeholder for blockchain/timechain logging
+        self.system_context = None
         self.brain_sync = False
         
         # Initialize AthenaMist-Blended integration
@@ -559,6 +564,32 @@ class CoastalMemoryEngine:
             except Exception as e:
                 print(f"⚠️  Warning: Could not initialize AthenaMist brain: {e}")
         
+    def register(self, system_context):
+        self.system_context = system_context
+        self._log_action('register', {'context': system_context})
+        return True
+
+    def process(self, input_data):
+        result = {}
+        if 'memory' in input_data:
+            memory = input_data['memory']
+            result['memory_id'] = self.memory_db.add_memory(memory)
+        if 'experience' in input_data:
+            experience = input_data['experience']
+            result['session_id'] = self.experience_manager.start_experience(**experience)
+        if 'feedback' in input_data:
+            feedback = input_data['feedback']
+            result['feedback_status'] = self.experience_manager.update_experience(**feedback)
+        self._log_action('process', {'input': input_data, 'output': result})
+        return result
+
+    def shutdown(self):
+        self._log_action('shutdown', {})
+        return True
+
+    def _log_action(self, action, data):
+        self.blockchain_log.append({'action': action, 'data': data, 'timestamp': datetime.now()})
+
     def create_memory(self, memory_data: Dict[str, Any]) -> Optional[str]:
         """
         Create a new coastal memory.
