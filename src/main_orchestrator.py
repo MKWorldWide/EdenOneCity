@@ -17,6 +17,8 @@ import time
 from src.eden_core.agent_bus import AgentBus, Agent
 from src.eden_core.citizen_interface import CitizenInterface
 from src.eden_core.ethics_protocol import EthicsProtocol
+from src.eden_core.aincrad_integration import send_zone_update, listen_for_aincrad_events
+from src.eden_core.lilithos_integration import log_system_event, register_service, listen_for_lilithos_events
 
 # Initialize agent bus
 bus = AgentBus()
@@ -30,24 +32,37 @@ eden_id = bus.register_agent(eden_agent)
 aincrad_id = bus.register_agent(aincrad_agent)
 lilithos_id = bus.register_agent(lilithos_agent)
 
-# Simulate a city state update (e.g., new garden created)
-zone_update = {'zone': 'Zero-G Dome', 'event': 'new_garden', 'details': {'name': 'Starlight Lotus', 'plants': 42}}
-bus.send_message(sender_id=eden_id, recipient_id=aincrad_id, message={'zone_update': zone_update})
+# Register additional agents
+maintenance_bot = Agent('MaintenanceBot', public_key='maint_pub')
+event_coordinator = Agent('EventCoordinator', public_key='event_pub')
+security_ai = Agent('SecurityAI', public_key='sec_pub')
 
-# Simulate a system event (e.g., security alert)
-system_event = {'event': 'security_alert', 'level': 'critical', 'details': {'zone': 'Stargate Plaza'}}
-bus.send_message(sender_id=eden_id, recipient_id=lilithos_id, message={'system_event': system_event})
+maint_id = bus.register_agent(maintenance_bot)
+event_id = bus.register_agent(event_coordinator)
+sec_id = bus.register_agent(security_ai)
 
-# Simulate citizen input and ethical check
-interface = CitizenInterface()
-ethics = EthicsProtocol()
+# Register EdenOneCity as a service with LilithOS
+register_service({'service': 'EdenOneCity', 'type': 'city_module'})
 
-# Voice command
-interface.handle_voice_input('Show me the gardens')
+# Send a real zone update to AINCRAD
+send_zone_update({'zone': 'Zero-G Dome', 'event': 'new_garden', 'details': {'name': 'Starlight Lotus', 'plants': 42}})
 
-# Ethical check for a critical action
-decision = ethics.evaluate_decision(context={'zone': 'Stargate Plaza'}, action='open_portal')
-if not decision['approved']:
-    ethics.request_override(user='admin', action='open_portal')
+# Log a real system event to LilithOS
+log_system_event({'event': 'security_alert', 'level': 'critical', 'details': {'zone': 'Stargate Plaza'}})
 
-print('Live agent orchestration and data flow initialized.') 
+# Feedback loop: Listen for AINCRAD and LilithOS events
+
+def on_aincrad_event(event):
+    print(f'[Orchestrator] Received AINCRAD event: {event}')
+    # Example: Forward visualization confirmation to EdenOneCity agent
+    bus.send_message(sender_id=aincrad_id, recipient_id=eden_id, message={'visualization_feedback': event})
+
+def on_lilithos_event(event):
+    print(f'[Orchestrator] Received LilithOS event: {event}')
+    # Example: Forward resource update to MaintenanceBot
+    bus.send_message(sender_id=lilithos_id, recipient_id=maint_id, message={'resource_update': event})
+
+listen_for_aincrad_events(on_aincrad_event)
+listen_for_lilithos_events(on_lilithos_event)
+
+print('Advanced agent orchestration, real API integration, and feedback loops initialized.') 
