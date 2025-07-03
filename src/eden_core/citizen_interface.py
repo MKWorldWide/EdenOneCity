@@ -29,12 +29,41 @@ Eden One City - Citizen Interface Layer
 """
 
 class CitizenInterface:
+    def __init__(self):
+        self.voice_callbacks = []
+        self.gesture_callbacks = []
+        self.neural_callbacks = []
+        self.feedback_log = []
+
     def handle_voice_input(self, audio_data):
-        """Stub for voice input processing."""
-        pass
+        """Process voice input and trigger callbacks."""
+        print(f'[CitizenInterface] Voice input: {audio_data}')
+        for cb in self.voice_callbacks:
+            cb(audio_data)
+        self.feedback_log.append({'type': 'voice', 'data': audio_data})
+
     def handle_gesture_input(self, gesture_data):
-        """Stub for gesture input processing."""
-        pass
+        """Process gesture input and trigger callbacks."""
+        print(f'[CitizenInterface] Gesture input: {gesture_data}')
+        for cb in self.gesture_callbacks:
+            cb(gesture_data)
+        self.feedback_log.append({'type': 'gesture', 'data': gesture_data})
+
     def handle_neural_input(self, neural_data):
-        """Stub for neural input processing."""
-        pass 
+        """Process neural input and trigger callbacks."""
+        print(f'[CitizenInterface] Neural input: {neural_data}')
+        for cb in self.neural_callbacks:
+            cb(neural_data)
+        self.feedback_log.append({'type': 'neural', 'data': neural_data})
+
+    def add_voice_callback(self, callback):
+        self.voice_callbacks.append(callback)
+
+    def add_gesture_callback(self, callback):
+        self.gesture_callbacks.append(callback)
+
+    def add_neural_callback(self, callback):
+        self.neural_callbacks.append(callback)
+
+    def get_feedback_log(self):
+        return self.feedback_log 
