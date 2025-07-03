@@ -195,6 +195,33 @@ class ResponseGenerator:
 - Robust error handling for brain communication
 - Continuous emotional monitoring and reporting
 
+## 🧠 Multi-Agent & Citizen Interface Expansion
+- **Agent Bus**: All emotional data and feedback are routed through secure, event-driven agent communication.
+- **Citizen Interface**: Supports voice, gesture, neural, XR, and tactile HUD input for real-time emotional feedback.
+- **Ethical Protocols**: All emotional decisions are explainable, auditable, and override-ready.
+
+## 🛠️ Example: Citizen Input and Ethical Check
+```python
+from src.eden_core.citizen_interface import CitizenInterface
+from src.eden_core.ethics_protocol import EthicsProtocol
+interface = CitizenInterface()
+interface.handle_voice_input('How are you feeling today?')
+ethics = EthicsProtocol()
+result = ethics.evaluate_decision(context={'zone': 'emotional'}, action='adjust_lighting')
+if not result['approved']:
+    ethics.request_override(user='admin', action='adjust_lighting')
+```
+
+## 📚 Cross-References
+- See `/docs/architecture/ARCHITECTURE.md` for system design and modularity.
+- See `/docs/security/SECURITY_PROTOCOLS.md` for security and OS integration.
+- See `/docs/cultural/CULTURAL_PRESERVATION.md` for cultural engine and spatial integration.
+
+## 🧠 Emotional AI Features
+- Real-time, multimodal feedback and adaptation.
+- Transparent, explainable, and override-ready emotional decisions.
+- Quantum-documented, auditable emotional data flows.
+
 ---
 *This document is part of the Eden One Emotional Intelligence Framework and is classified under NovaSanctum.Orbitals.EdenOne security protocols.*
 **🧠 Powered by AthenaMist-Blended - The Central Emotional Brain of Eden One** 

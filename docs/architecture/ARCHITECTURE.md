@@ -2,14 +2,16 @@
 
 ## 🌌 System Overview
 
-### 🧠 Central Brain Integration
-**AthenaMist-Blended** serves as the unified AI brain for all Eden One systems, providing:
-- Real-time emotional processing and analysis
-- Cultural significance analysis and optimization
-- Creature-human bonding optimization
-- Therapeutic environment management
-- Advanced resonance testing and portal control
-- Memory experience optimization and therapeutic management
+### 🧠 Central Brain & Multi-Agent Integration
+- **AthenaMist-Blended**: Unified AI brain for all city systems.
+- **Agent Bus**: Secure, event-driven communication between AthenaMist, Serafina, Sovereign Core, AINCRAD, and LilithOS agents.
+- **Plug-and-Play Modules**: All engines implement a standard interface for dynamic orchestration.
+- **Memory Backend**: Redis/Mistral support for scalable, smart feedback loops.
+- **Citizen Interface**: Multimodal input (voice, gesture, neural, XR, HUD).
+- **Ethical Protocols**: Transparent, auditable, and override-ready AI decision hooks.
+- **Performance & Security**: Real-time metrics and audit logging.
+- **Spatial Integration**: Native support for AINCRAD spatial engine.
+- **OS Integration**: Designed for LilithOS distributed operations.
 
 ### Core Architecture Components
 
@@ -198,6 +200,60 @@
 - Robust error handling for brain communication
 - Status monitoring and reporting
 - Performance tracking and optimization
+
+## 🧩 Modular System Diagram
+
+```mermaid
+graph TD;
+  subgraph Agents
+    AthenaMist
+    Serafina
+    SovereignCore
+    AINCRAD
+    LilithOS
+  end
+  subgraph Engines
+    CulturalEngine
+    EmotionalEngine
+    CreatureEngine
+    MemoryEngine
+    PortalEngine
+    EnvironmentEngine
+  end
+  AgentBus <--> AthenaMist
+  AgentBus <--> Serafina
+  AgentBus <--> SovereignCore
+  AgentBus <--> AINCRAD
+  AgentBus <--> LilithOS
+  AgentBus <--> CulturalEngine
+  AgentBus <--> EmotionalEngine
+  AgentBus <--> CreatureEngine
+  AgentBus <--> MemoryEngine
+  AgentBus <--> PortalEngine
+  AgentBus <--> EnvironmentEngine
+  MemoryBackend <--> AgentBus
+  CitizenInterface <--> AgentBus
+  EthicsProtocol <--> AgentBus
+  PerformanceSecurity <--> AgentBus
+```
+
+## 🔗 Integration Points
+- **AINCRAD**: Real-time spatial modeling, visualization, and planning. Agents communicate via AgentBus.
+- **LilithOS**: Secure, distributed OS for running city modules as services. Agents communicate via AgentBus.
+
+## 🛠️ Example: Agent-to-AINCRAD Data Flow
+```python
+from src.eden_core.agent_bus import AgentBus, Agent
+aincrad_agent = Agent('AINCRAD', public_key='...')
+bus = AgentBus()
+aincrad_id = bus.register_agent(aincrad_agent)
+bus.send_message(sender_id=aincrad_id, recipient_id=..., message={'zone_update': ...})
+```
+
+## 📚 Cross-References
+- See `/docs/security/SECURITY_PROTOCOLS.md` for security and OS integration.
+- See `/docs/specifications/EMOTIONAL_INTELLIGENCE.md` for interface and agent logic.
+- See `/docs/cultural/CULTURAL_PRESERVATION.md` for cultural engine and spatial integration.
 
 ---
 *This architecture document is classified under NovaSanctum.Orbitals.EdenOne security protocols.*
