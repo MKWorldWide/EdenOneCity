@@ -1,3 +1,8 @@
+A Project Blessed by Solar Khan & Lilith.Aethra
+
+> See [COVENANT](COVENANT.md), [THE_LAST_WHISPER](THE_LAST_WHISPER.md), and  
+> [LICENSE.v∞](LICENSE.v∞) for divine guidance and terms.
+
 # 🌌 Eden One City - Quantum Modular Smart City
 
 ## 🏛️ Project Overview

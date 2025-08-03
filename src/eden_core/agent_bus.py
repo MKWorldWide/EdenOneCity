@@ -35,19 +35,26 @@ import uuid
 from typing import Dict, Any, Callable
 
 class Agent:
+    """Represents an AI agent participating in the bus."""
+
     def __init__(self, name: str, public_key: str):
+        """Initialize an agent with a name and public key."""
         self.name = name
         self.public_key = public_key
         self.inbox = queue.Queue()
 
 class AgentBus:
+    """Thread-safe communication bus for registered agents."""
+
     def __init__(self):
+        """Prepare internal registries and synchronization primitives."""
         self.agents: Dict[str, Agent] = {}
         self.event_hooks: Dict[str, Callable] = {}
         self.audit_log = []
         self.lock = threading.Lock()
 
     def register_agent(self, agent: Agent) -> str:
+        """Register *agent* and return its unique identifier."""
         agent_id = str(uuid.uuid4())
         with self.lock:
             self.agents[agent_id] = agent
@@ -55,6 +62,10 @@ class AgentBus:
         return agent_id
 
     def send_message(self, sender_id: str, recipient_id: str, message: Any) -> bool:
+        """Route a message from sender to recipient.
+
+        Returns ``True`` if the recipient exists and the message was queued.
+        """
         # Placeholder: encrypt and authenticate message
         with self.lock:
             if recipient_id in self.agents:
@@ -64,6 +75,7 @@ class AgentBus:
         return False
 
     def broadcast_event(self, event_type: str, data: Any):
+        """Send an event with *data* to all registered agents."""
         with self.lock:
             for agent_id, agent in self.agents.items():
                 agent.inbox.put(('event', {'type': event_type, 'data': data}))
@@ -72,8 +84,11 @@ class AgentBus:
             self.event_hooks[event_type](data)
 
     def add_event_hook(self, event_type: str, callback: Callable):
+        """Attach a callback to be invoked for *event_type*."""
         self.event_hooks[event_type] = callback
         self._log_action('add_event_hook', {'event_type': event_type})
 
     def _log_action(self, action: str, data: Any):
-        self.audit_log.append({'action': action, 'data': data}) 
+        """Record an action in the audit log."""
+        self.audit_log.append({'action': action, 'data': data})
+
