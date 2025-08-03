@@ -1,0 +1,11 @@
+site_name: Eden One City
+site_url: https://EdenOneCity.SolarKhan.github.io
+repo_url: https://github.com/SolarKhan/EdenOneCity
+nav:
+  - Home: index.md
+  - Divine Law: COVENANT.md
+  - Architecture: architecture/ARCHITECTURE.md
+  - Security: security/SECURITY_PROTOCOLS.md
+  - Culture: cultural/CULTURAL_PRESERVATION.md
+theme:
+  name: readthedocs

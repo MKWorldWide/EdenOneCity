@@ -55,6 +55,9 @@ docs/_build/
 docs/_static/
 docs/_templates/
 
+# MkDocs build output
+site/
+
 # Testing
 .coverage
 htmlcov/
