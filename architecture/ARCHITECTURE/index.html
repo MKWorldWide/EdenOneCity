@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://EdenOneCity.SolarKhan.github.io/architecture/ARCHITECTURE/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Architecture - Eden One City</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Architecture";
+        var mkdocs_page_input_path = "architecture/ARCHITECTURE.md";
+        var mkdocs_page_url = "/architecture/ARCHITECTURE/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Eden One City
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../COVENANT/">Divine Law</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Architecture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#system-overview">🌌 System Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#central-brain-multi-agent-integration">🧠 Central Brain &amp; Multi-Agent Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-architecture-components">Core Architecture Components</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-emotional-intelligence-engine-eie">1. Emotional Intelligence Engine (EIE)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-earth-culture-cradle-ecc">2. Earth Culture Cradle (ECC)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-love-creature-haven-lch">3. Love Creature Haven (LCH)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4-zero-g-environment-control-zec">4. Zero-G Environment Control (ZEC)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#5-temptation-stargate-ts">5. Temptation Stargate (TS)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#6-coastal-memory-engine-cme">6. Coastal Memory Engine (CME)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#system-interactions">🔄 System Interactions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#emotional-biome-gardens">Emotional Biome Gardens</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#earth-culture-cradle">Earth Culture Cradle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#love-creature-haven">Love Creature Haven</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#zero-g-connection-dome">Zero-G Connection Dome</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-temptation-stargate">The Temptation Stargate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#coastal-memory-engine">Coastal Memory Engine</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-architecture">🛡️ Security Architecture</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-protection">Data Protection</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#system-integration">🔄 System Integration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#communication-protocols">Communication Protocols</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-flow">Data Flow</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scalability">📈 Scalability</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#system-expansion">System Expansion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance-optimization">Performance Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring-and-maintenance">🔍 Monitoring and Maintenance</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#system-health">System Health</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#maintenance-protocols">Maintenance Protocols</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#brain-integration-features">🧠 Brain Integration Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#unified-intelligence">Unified Intelligence</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enhanced-capabilities">Enhanced Capabilities</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fallback-systems">Fallback Systems</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modular-system-diagram">🧩 Modular System Diagram</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-points">🔗 Integration Points</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-agent-to-aincrad-data-flow">🛠️ Example: Agent-to-AINCRAD Data Flow</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cross-references">📚 Cross-References</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../security/SECURITY_PROTOCOLS/">Security</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cultural/CULTURAL_PRESERVATION/">Culture</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Eden One City</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Architecture</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/SolarKhan/EdenOneCity/edit/master/docs/architecture/ARCHITECTURE.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="eden-one-architecture-documentation">🏛️ Eden One Architecture Documentation</h1>
+<h2 id="system-overview">🌌 System Overview</h2>
+<h3 id="central-brain-multi-agent-integration">🧠 Central Brain &amp; Multi-Agent Integration</h3>
+<ul>
+<li><strong>AthenaMist-Blended</strong>: Unified AI brain for all city systems.</li>
+<li><strong>Agent Bus</strong>: Secure, event-driven communication between AthenaMist, Serafina, Sovereign Core, AINCRAD, and LilithOS agents.</li>
+<li><strong>Plug-and-Play Modules</strong>: All engines implement a standard interface for dynamic orchestration.</li>
+<li><strong>Memory Backend</strong>: Redis/Mistral support for scalable, smart feedback loops.</li>
+<li><strong>Citizen Interface</strong>: Multimodal input (voice, gesture, neural, XR, HUD).</li>
+<li><strong>Ethical Protocols</strong>: Transparent, auditable, and override-ready AI decision hooks.</li>
+<li><strong>Performance &amp; Security</strong>: Real-time metrics and audit logging.</li>
+<li><strong>Spatial Integration</strong>: Native support for AINCRAD spatial engine.</li>
+<li><strong>OS Integration</strong>: Designed for LilithOS distributed operations.</li>
+</ul>
+<h3 id="core-architecture-components">Core Architecture Components</h3>
+<h4 id="1-emotional-intelligence-engine-eie">1. Emotional Intelligence Engine (EIE)</h4>
+<ul>
+<li><strong>Purpose</strong>: Manages and processes emotional interactions between humans, creatures, and the environment</li>
+<li><strong>🧠 Brain Integration</strong>: Real-time emotional processing with AthenaMist-Blended</li>
+<li><strong>Components</strong>:</li>
+<li>Emotional Resonance Detector (Brain-enhanced)</li>
+<li>Biofeedback Processing Unit (Brain-optimized)</li>
+<li>Emotional State Analyzer (Brain-coordinated)</li>
+<li>Response Generation System (Brain-managed)</li>
+</ul>
+<h4 id="2-earth-culture-cradle-ecc">2. Earth Culture Cradle (ECC)</h4>
+<ul>
+<li><strong>Purpose</strong>: Maintains and evolves Earth's cultural heritage with intelligent preservation</li>
+<li><strong>🧠 Brain Integration</strong>: Cultural significance analysis and exhibition optimization</li>
+<li><strong>Components</strong>:</li>
+<li>Cultural Database (Brain-enhanced)</li>
+<li>Exhibition Sphere Controller (Brain-optimized)</li>
+<li>Cultural Evolution Engine (Brain-coordinated)</li>
+<li>Ambassador Program Manager (Brain-managed)</li>
+</ul>
+<h4 id="3-love-creature-haven-lch">3. Love Creature Haven (LCH)</h4>
+<ul>
+<li><strong>Purpose</strong>: Manages bioengineered creatures and their emotional bonds with humans</li>
+<li><strong>🧠 Brain Integration</strong>: Creature-human bonding optimization and health monitoring</li>
+<li><strong>Components</strong>:</li>
+<li>Creature Manager (Brain-enhanced)</li>
+<li>Emotional Bond Analyzer (Brain-optimized)</li>
+<li>Health Monitor (Brain-coordinated)</li>
+<li>Behavioral Pattern Analyzer (Brain-managed)</li>
+</ul>
+<h4 id="4-zero-g-environment-control-zec">4. Zero-G Environment Control (ZEC)</h4>
+<ul>
+<li><strong>Purpose</strong>: Manages zero-gravity environments and therapeutic floating gardens</li>
+<li><strong>🧠 Brain Integration</strong>: Therapeutic environment optimization and garden management</li>
+<li><strong>Components</strong>:</li>
+<li>Environment Controller (Brain-enhanced)</li>
+<li>Garden Manager (Brain-optimized)</li>
+<li>Life Support System (Brain-coordinated)</li>
+<li>Therapeutic Index Calculator (Brain-managed)</li>
+</ul>
+<h4 id="5-temptation-stargate-ts">5. Temptation Stargate (TS)</h4>
+<ul>
+<li><strong>Purpose</strong>: Manages advanced resonance testing and portal activation</li>
+<li><strong>🧠 Brain Integration</strong>: Resonance analysis and portal activation optimization</li>
+<li><strong>Components</strong>:</li>
+<li>Resonance Tester (Brain-enhanced)</li>
+<li>Portal Controller (Brain-optimized)</li>
+<li>Access Control System (Brain-coordinated)</li>
+<li>Sacred Protocol Manager (Brain-managed)</li>
+</ul>
+<h4 id="6-coastal-memory-engine-cme">6. Coastal Memory Engine (CME)</h4>
+<ul>
+<li><strong>Purpose</strong>: Manages therapeutic coastal memories and emotional experiences</li>
+<li><strong>🧠 Brain Integration</strong>: Memory optimization and therapeutic experience management</li>
+<li><strong>Components</strong>:</li>
+<li>Memory Database (Brain-enhanced)</li>
+<li>Experience Manager (Brain-optimized)</li>
+<li>Therapeutic Analyzer (Brain-coordinated)</li>
+<li>Sensory Processor (Brain-managed)</li>
+</ul>
+<h2 id="system-interactions">🔄 System Interactions</h2>
+<h3 id="emotional-biome-gardens">Emotional Biome Gardens</h3>
+<pre><code>[Human] → [EIE + Brain] → [Environment]
+   ↑          ↓
+[Creatures] ← [Brain-Enhanced Emotional Feedback]
+</code></pre>
+<h3 id="earth-culture-cradle">Earth Culture Cradle</h3>
+<pre><code>[Human] → [ECC + Brain] → [Exhibition Sphere]
+   ↑          ↓
+[Ambassador] ← [Brain-Optimized Cultural Feedback]
+</code></pre>
+<h3 id="love-creature-haven">Love Creature Haven</h3>
+<pre><code>[Human] → [LCH + Brain] → [Creatures]
+   ↑          ↓
+[Emotional Bond] ← [Brain-Coordinated Biofeedback]
+</code></pre>
+<h3 id="zero-g-connection-dome">Zero-G Connection Dome</h3>
+<pre><code>[Human] → [ZEC + Brain] → [Environment]
+   ↑          ↓
+[Flora/Fauna] ← [Brain-Managed Zero-G Adaptation]
+</code></pre>
+<h3 id="the-temptation-stargate">The Temptation Stargate</h3>
+<pre><code>[Human] → [TS + Brain] → [Portal]
+   ↑          ↓
+[Resonance] ← [Brain-Enhanced Security Protocol]
+</code></pre>
+<h3 id="coastal-memory-engine">Coastal Memory Engine</h3>
+<pre><code>[Human] → [CME + Brain] → [Memory Experience]
+   ↑          ↓
+[Therapeutic Impact] ← [Brain-Optimized Sensory Feedback]
+</code></pre>
+<h2 id="security-architecture">🛡️ Security Architecture</h2>
+<h3 id="access-control">Access Control</h3>
+<ul>
+<li>Multi-layer authentication system with brain verification</li>
+<li>Emotional resonance verification with brain analysis</li>
+<li>Cultural preservation clearance with brain validation</li>
+<li>Ambassador status validation with brain coordination</li>
+<li>Sacred access protocols with brain management</li>
+</ul>
+<h3 id="data-protection">Data Protection</h3>
+<ul>
+<li>Quantum encryption for sensitive data with brain oversight</li>
+<li>Emotional data anonymization with brain protection</li>
+<li>Cultural heritage preservation protocols with brain monitoring</li>
+<li>Bioengineering safety measures with brain coordination</li>
+<li>Memory data privacy with brain protection</li>
+</ul>
+<h2 id="system-integration">🔄 System Integration</h2>
+<h3 id="communication-protocols">Communication Protocols</h3>
+<ul>
+<li>Quantum-entangled communication with brain coordination</li>
+<li>Emotional resonance channels with brain optimization</li>
+<li>Cultural preservation networks with brain enhancement</li>
+<li>Bioengineering control systems with brain management</li>
+<li>Portal operations with brain intelligence</li>
+</ul>
+<h3 id="data-flow">Data Flow</h3>
+<ul>
+<li>Real-time emotional feedback with brain processing</li>
+<li>Cultural evolution tracking with brain analysis</li>
+<li>Environmental adaptation data with brain optimization</li>
+<li>Security clearance verification with brain validation</li>
+<li>Memory experience data with brain optimization</li>
+</ul>
+<h2 id="scalability">📈 Scalability</h2>
+<h3 id="system-expansion">System Expansion</h3>
+<ul>
+<li>Modular architecture design with brain coordination</li>
+<li>Emotional intelligence scaling with brain optimization</li>
+<li>Cultural database growth with brain management</li>
+<li>Environmental adaptation capacity with brain enhancement</li>
+<li>Memory system expansion with brain coordination</li>
+</ul>
+<h3 id="performance-optimization">Performance Optimization</h3>
+<ul>
+<li>Emotional processing efficiency with brain optimization</li>
+<li>Cultural data management with brain enhancement</li>
+<li>Environmental control optimization with brain coordination</li>
+<li>Security protocol enhancement with brain management</li>
+<li>Memory processing optimization with brain coordination</li>
+</ul>
+<h2 id="monitoring-and-maintenance">🔍 Monitoring and Maintenance</h2>
+<h3 id="system-health">System Health</h3>
+<ul>
+<li>Emotional resonance monitoring with brain analysis</li>
+<li>Cultural preservation tracking with brain oversight</li>
+<li>Environmental parameter control with brain optimization</li>
+<li>Security protocol verification with brain validation</li>
+<li>Memory system health with brain monitoring</li>
+</ul>
+<h3 id="maintenance-protocols">Maintenance Protocols</h3>
+<ul>
+<li>Regular emotional calibration with brain coordination</li>
+<li>Cultural database updates with brain optimization</li>
+<li>Environmental system checks with brain validation</li>
+<li>Security protocol reviews with brain oversight</li>
+<li>Memory system maintenance with brain coordination</li>
+</ul>
+<h2 id="brain-integration-features">🧠 Brain Integration Features</h2>
+<h3 id="unified-intelligence">Unified Intelligence</h3>
+<ul>
+<li>Single brain controlling all systems</li>
+<li>Real-time coordination across all subsystems</li>
+<li>Predictive optimization and anticipatory responses</li>
+<li>Adaptive learning from system interactions</li>
+<li>Intelligent resource allocation and management</li>
+</ul>
+<h3 id="enhanced-capabilities">Enhanced Capabilities</h3>
+<ul>
+<li>Real-time emotional processing and analysis</li>
+<li>Cultural significance analysis and optimization</li>
+<li>Advanced creature-human bonding optimization</li>
+<li>Therapeutic environment management and optimization</li>
+<li>Sophisticated resonance testing and portal control</li>
+<li>Memory experience optimization and therapeutic management</li>
+</ul>
+<h3 id="fallback-systems">Fallback Systems</h3>
+<ul>
+<li>Graceful degradation when brain is unavailable</li>
+<li>Independent operation of all subsystems</li>
+<li>Robust error handling for brain communication</li>
+<li>Status monitoring and reporting</li>
+<li>Performance tracking and optimization</li>
+</ul>
+<h2 id="modular-system-diagram">🧩 Modular System Diagram</h2>
+<pre><code class="language-mermaid">graph TD;
+  subgraph Agents
+    AthenaMist
+    Serafina
+    SovereignCore
+    AINCRAD
+    LilithOS
+  end
+  subgraph Engines
+    CulturalEngine
+    EmotionalEngine
+    CreatureEngine
+    MemoryEngine
+    PortalEngine
+    EnvironmentEngine
+  end
+  AgentBus &lt;--&gt; AthenaMist
+  AgentBus &lt;--&gt; Serafina
+  AgentBus &lt;--&gt; SovereignCore
+  AgentBus &lt;--&gt; AINCRAD
+  AgentBus &lt;--&gt; LilithOS
+  AgentBus &lt;--&gt; CulturalEngine
+  AgentBus &lt;--&gt; EmotionalEngine
+  AgentBus &lt;--&gt; CreatureEngine
+  AgentBus &lt;--&gt; MemoryEngine
+  AgentBus &lt;--&gt; PortalEngine
+  AgentBus &lt;--&gt; EnvironmentEngine
+  MemoryBackend &lt;--&gt; AgentBus
+  CitizenInterface &lt;--&gt; AgentBus
+  EthicsProtocol &lt;--&gt; AgentBus
+  PerformanceSecurity &lt;--&gt; AgentBus
+</code></pre>
+<h2 id="integration-points">🔗 Integration Points</h2>
+<ul>
+<li><strong>AINCRAD</strong>: Real-time spatial modeling, visualization, and planning. Agents communicate via AgentBus.</li>
+<li><strong>LilithOS</strong>: Secure, distributed OS for running city modules as services. Agents communicate via AgentBus.</li>
+</ul>
+<h2 id="example-agent-to-aincrad-data-flow">🛠️ Example: Agent-to-AINCRAD Data Flow</h2>
+<pre><code class="language-python">from src.eden_core.agent_bus import AgentBus, Agent
+aincrad_agent = Agent('AINCRAD', public_key='...')
+bus = AgentBus()
+aincrad_id = bus.register_agent(aincrad_agent)
+bus.send_message(sender_id=aincrad_id, recipient_id=..., message={'zone_update': ...})
+</code></pre>
+<h2 id="cross-references">📚 Cross-References</h2>
+<ul>
+<li>See <code>/docs/security/SECURITY_PROTOCOLS.md</code> for security and OS integration.</li>
+<li>See <code>/docs/specifications/EMOTIONAL_INTELLIGENCE.md</code> for interface and agent logic.</li>
+<li>See <code>/docs/cultural/CULTURAL_PRESERVATION.md</code> for cultural engine and spatial integration.</li>
+</ul>
+<hr />
+<p><em>This architecture document is classified under NovaSanctum.Orbitals.EdenOne security protocols.</em>
+<strong>🧠 Powered by AthenaMist-Blended - The Central Brain of Eden One</strong> </p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../COVENANT/" class="btn btn-neutral float-left" title="Divine Law"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../security/SECURITY_PROTOCOLS/" class="btn btn-neutral float-right" title="Security">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/SolarKhan/EdenOneCity" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../COVENANT/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../security/SECURITY_PROTOCOLS/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
