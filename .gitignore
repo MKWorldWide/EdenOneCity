@@ -1,3 +1,7 @@
+# Node
+node_modules/
+serafina/dist/
+
 # Python
 __pycache__/
 *.py[cod]
