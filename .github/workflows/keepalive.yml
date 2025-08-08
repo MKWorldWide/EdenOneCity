@@ -1,0 +1,13 @@
+name: keepalive
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Redeploy Serafina
+        run: curl -sS -X POST "$RENDER_DEPLOY_HOOK_SERAFINA"
+      - name: Redeploy Lilybear
+        run: curl -sS -X POST "$RENDER_DEPLOY_HOOK_LILYBEAR"

@@ -13,6 +13,7 @@ Eden One City is a fully modular, AI-driven, and spatially immersive smart city 
 ## 🚀 Core Features
 - **Plug-and-Play Engine Architecture**: All city modules (cultural, emotional, creature, memory, portal, environment) implement a unified interface for dynamic orchestration.
 - **Multi-Agent AI Bus**: Secure, event-driven communication between AthenaMist, Serafina, Sovereign Core, and other agents.
+- **VRChat & Discord Bridge**: Serafina pipes Discord messages into Unity guardians for in-world interactions.
 - **Memory Backend Abstraction**: Supports Redis and Mistral for scalable, smart feedback loops.
 - **Citizen Interface Layer**: Extensible support for voice, gesture, neural, XR, and tactile HUD input.
 - **Ethical AI Protocols**: Transparent, auditable, and override-ready decision hooks for all urban AI actions.
